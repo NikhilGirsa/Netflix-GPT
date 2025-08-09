@@ -1,0 +1,67 @@
+import React, { useState, useRef } from "react";
+
+const SignUp = () => {
+  const [isActive, setIsActive] = useState(false); // Controls label animation
+  const emailRef = useRef(null);
+
+  const handleGetStarted = () => {
+    setIsActive(true);
+    emailRef.current.focus();
+  };
+
+  const handleBlur = (e) => {
+    if (!e.target.value) {
+      setIsActive(false);
+    }
+  };
+
+  return (
+    <div className="text-center text-white max-w-2xl mx-auto px-4 py-12">
+      {/* Headline */}
+      <h1 className="text-6xl md:text-6xl font-extrabold mb-4 leading-tight">
+        Unlimited movies, TV shows and more
+      </h1>
+
+      {/* Subheadline */}
+      <h3 className="text-lg md:text-xl mb-3">
+        Starts at ₹149. Cancel at any time.
+      </h3>
+
+      {/* Description */}
+      <p className="mb-6 text-sm md:text-base">
+        Ready to watch? Enter your email to create or restart your membership.
+      </p>
+
+      {/* Email + Button */}
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-3 relative">
+        <div className="relative w-1/2">
+          {/* Floating Label */}
+          <label
+            className={`absolute left-3 transition-all duration-200 pointer-events-none ${
+              isActive
+                ? "-top text-xs text-gray-400"
+                : "top-1/2 -translate-y-1/2 text-gray-400"
+            }`}
+          >
+            Email address
+          </label>
+          <input
+            ref={emailRef}
+            onBlur={handleBlur}
+            onFocus={() => setIsActive(true)}
+            className="p-3 pt-5 rounded w-full bg-zinc-800 text-white focus:outline-none"
+            type="email"
+          />
+        </div>
+        <button
+          onClick={handleGetStarted}
+          className="bg-red-600 hover:bg-red-700 transition-colors px-6 py-3 text-lg font-medium rounded-sm"
+        >
+          Get Started &gt;
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default SignUp;
