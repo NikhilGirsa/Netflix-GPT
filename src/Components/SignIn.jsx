@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import { checkValidData } from "../Utils/Validate";
+import { auth } from "../Utils/Firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = ({ toggleSignIn }) => {
   const emailRef = useRef(null);
@@ -18,7 +20,21 @@ const SignIn = ({ toggleSignIn }) => {
       !validationErrors.password &&
       !validationErrors.global
     ) {
-      console.log("Validation successful.");
+      signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log("User signed in:", user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert(`Error signing in: ${errorCode}`);
+        });
     }
   };
 

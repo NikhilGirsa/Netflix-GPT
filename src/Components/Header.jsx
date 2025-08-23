@@ -1,11 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ isSignIn, toggleSignIn }) => {
+  const navigate = useNavigate();
   return (
     <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-black flex justify-between items-center p-4 md:p-8 z-10">
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png"
         alt="Netflix Logo"
+        onClick={() => navigate("/")}
         className="h-10 md:h-12"
       />
       {!isSignIn && (

@@ -6,7 +6,9 @@ import SignUp from "./SignUp";
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(false);
 
-  const toggleSignIn = () => setIsSignIn((prev) => !prev);
+  const toggleSignIn = () => {
+    setIsSignIn((prev) => !prev);
+  };
 
   return (
     <div className="relative w-full h-screen text-white">
