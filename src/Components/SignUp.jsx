@@ -52,7 +52,7 @@ const SignUp = () => {
         </div>
         <button
           onClick={handleGetStarted}
-          className="bg-red-600 hover:bg-red-700 transition-colors px-6 py-3 text-lg font-medium rounded-sm"
+          className="bg-red-600 hover:bg-red-700 transition-colors px-6 py-3 text-lg font-medium rounded-sm cursor-pointer"
         >
           Get Started &gt;
         </button>
