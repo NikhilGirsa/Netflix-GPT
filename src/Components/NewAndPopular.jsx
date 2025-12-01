@@ -4,6 +4,7 @@ import Header from "./Header";
 import MovieList from "./MovieList";
 import TVList from "./TVList";
 import TrendingHero from "./TrendingHero";
+import PreviewModal from "./PreviewModal";
 import { TMDB_API_OPTIONS } from "../Utils/tmdbConfig";
 
 const NewAndPopular = () => {
@@ -57,6 +58,7 @@ const NewAndPopular = () => {
           <MovieList title="Upcoming Movies" movies={movies.upcomingMovies} />
         </div>
       </div>
+      <PreviewModal />
     </div>
   );
 };

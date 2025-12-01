@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Header from "./Header";
 import TVList from "./TVList";
 import TVHero from "./TVHero";
+import PreviewModal from "./PreviewModal";
 import {
   useAiringTodayShows,
   useOnTheAirShows,
@@ -52,6 +53,7 @@ const TVShows = () => {
           <TVList title="Top Rated TV Shows" shows={tvShows.topRatedShows} />
         </div>
       </div>
+      <PreviewModal />
     </div>
   );
 };

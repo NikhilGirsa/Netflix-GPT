@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Header from "./Header";
 import MovieList from "./MovieList";
 import MovieHero from "./MovieHero";
+import PreviewModal from "./PreviewModal";
 import {
   useNowPlayingMovies,
   usePopularMovies,
@@ -37,21 +38,23 @@ const Movies = () => {
       <MovieHero />
       <div className="bg-black pb-20">
         <div className="-mt-32 md:-mt-40 lg:-mt-52 relative z-20 space-y-8 md:space-y-12">
-        <MovieList
-          title="Now Playing in Theaters"
-          movies={movies.nowPlayingMovies}
-        />
-        <MovieList title="Action & Adventure" movies={actionMovies} />
-        <MovieList title="Comedies" movies={comedyMovies} />
-        <MovieList title="Horror Movies" movies={horrorMovies} />
-        <MovieList title="Romantic Movies" movies={romanceMovies} />
-        <MovieList title="Sci-Fi Movies" movies={scifiMovies} />
-        <MovieList title="Animated Movies" movies={animationMovies} />
-        <MovieList title="Documentaries" movies={documentaries} />
-        <MovieList title="Popular Movies" movies={movies.popularMovies} />
-        <MovieList title="Top Rated Movies" movies={movies.topRatedMovies} />
-        <MovieList title="Coming Soon" movies={movies.upcomingMovies} />
+          <MovieList
+            title="Now Playing in Theaters"
+            movies={movies.nowPlayingMovies}
+          />
+          <MovieList title="Action & Adventure" movies={actionMovies} />
+          <MovieList title="Comedies" movies={comedyMovies} />
+          <MovieList title="Horror Movies" movies={horrorMovies} />
+          <MovieList title="Romantic Movies" movies={romanceMovies} />
+          <MovieList title="Sci-Fi Movies" movies={scifiMovies} />
+          <MovieList title="Animated Movies" movies={animationMovies} />
+          <MovieList title="Documentaries" movies={documentaries} />
+          <MovieList title="Popular Movies" movies={movies.popularMovies} />
+          <MovieList title="Top Rated Movies" movies={movies.topRatedMovies} />
+          <MovieList title="Coming Soon" movies={movies.upcomingMovies} />
+        </div>
       </div>
+      <PreviewModal />
     </div>
   );
 };

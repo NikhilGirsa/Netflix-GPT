@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import PreviewModal from "./PreviewModal";
 import {
   useNowPlayingMovies,
   usePopularMovies,
@@ -31,6 +32,7 @@ const Browse = () => {
       {/* HOME PAGE - Video Banner */}
       <MainContainer />
       <SecondaryContainer />
+      <PreviewModal />
     </div>
   );
 };

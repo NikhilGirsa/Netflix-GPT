@@ -15,6 +15,7 @@ const TVList = ({ title, shows }) => {
               key={show.id}
               posterPath={show.poster_path}
               name={show.name}
+              showData={show}
             />
           ))}
         </div>

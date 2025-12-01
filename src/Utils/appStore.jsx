@@ -4,6 +4,7 @@ import movieReducer from "./movieSlice";
 import tvReducer from "./tvSlice";
 import searchReducer from "./searchSlice";
 import myListReducer from "./myListSlice";
+import modalReducer from "./modalSlice";
 
 const appStore = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const appStore = configureStore({
     tv: tvReducer,
     search: searchReducer,
     myList: myListReducer,
+    modal: modalReducer,
   },
 });
 
