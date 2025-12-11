@@ -15,11 +15,26 @@ export const useNowPlayingMovies = () => {
 
   const getNowPlayingMovies = async () => {
     try {
+      console.log("Fetching now playing movies...");
       const response = await fetch(
         "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
         TMDB_API_OPTIONS
       );
+
+      console.log("Response status:", response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("API Error:", response.status, errorText);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const json = await response.json();
+      console.log(
+        "Now playing movies received:",
+        json.results?.length,
+        "movies"
+      );
       dispatch(addNowPlayingMovies(json.results));
     } catch (error) {
       console.error("Error fetching now playing movies:", error);

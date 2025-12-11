@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Search, Bell } from "lucide-react";
 import ProfileMenu from "./ProfileMenu";
--09;
 import { NETFLIX_IMG } from "../Utils/Constants";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";

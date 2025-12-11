@@ -15,27 +15,49 @@ const SignIn = ({ toggleSignIn }) => {
     );
     setErrors(validationErrors);
 
+    // Check if ANY error exists (email, password, OR global)
     if (
-      !validationErrors.email &&
-      !validationErrors.password &&
-      !validationErrors.global
+      validationErrors.email ||
+      validationErrors.password ||
+      validationErrors.global
     ) {
-      signInWithEmailAndPassword(
-        auth,
-        emailRef.current.value,
-        passwordRef.current.value
-      )
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log("User signed in:", user);
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          // const errorMessage = error.message;
-          alert(`Error signing in: ${errorCode}`);
-        });
+      console.log("Validation failed, not attempting sign in");
+      return; // Don't attempt sign in if there are any validation errors
     }
+
+    // Only attempt sign in if ALL validations pass
+    signInWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passwordRef.current.value
+    )
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("User signed in:", user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error("Sign in error:", errorCode, errorMessage);
+
+        // Set appropriate error message
+        let displayError = "";
+        if (
+          errorCode === "auth/invalid-credential" ||
+          errorCode === "auth/wrong-password"
+        ) {
+          displayError = "Incorrect email or password. Please try again.";
+        } else if (errorCode === "auth/user-not-found") {
+          displayError = "No account found with this email.";
+        } else if (errorCode === "auth/too-many-requests") {
+          displayError = "Too many failed attempts. Please try again later.";
+        } else {
+          displayError = `Error: ${errorCode}`;
+        }
+
+        setErrors({ email: "", password: "", global: displayError });
+      });
   };
 
   return (

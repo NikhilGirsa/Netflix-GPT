@@ -1,7 +1,7 @@
 // TMDB API Configuration
 // Get your API key and Access Token from: https://www.themoviedb.org/settings/api
 
-export const TMDB_API_KEY = "YOUR_TMDB_API_KEY_HERE";
+export const TMDB_API_KEY = "YOUR_TMDB_API_KEY";
 export const TMDB_ACCESS_TOKEN = "YOUR_TMDB_ACCESS_TOKEN_HERE";
 
 export const TMDB_API_OPTIONS = {
