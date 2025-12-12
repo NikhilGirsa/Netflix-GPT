@@ -45,107 +45,98 @@ const Header = ({ isSignIn, toggleSignIn }) => {
   };
 
   return (
-    <div className="absolute top-0 left-0 w-full bg-gradient-to-b from-black/80 via-black/40 to-transparent flex justify-between items-center p-4 md:p-8 z-50">
-      <img
-        src={NETFLIX_IMG}
-        alt="Netflix Logo"
-        onClick={() => navigate("/")}
-        className="h-10 md:h-12"
-      />
+    <div className="fixed top-0 left-0 w-full bg-gradient-to-b from-black via-black/80 to-transparent flex justify-between items-center px-4 md:px-12 lg:px-16 py-4 md:py-6 z-50 transition-all duration-300">
+      <div className="flex items-center gap-6 md:gap-10">
+        <img
+          src={NETFLIX_IMG}
+          alt="Netflix Logo"
+          onClick={() => navigate("/")}
+          className="h-6 md:h-8 cursor-pointer"
+        />
+        {user && (
+          <nav className="hidden md:flex items-center gap-5 text-sm text-white">
+            <button
+              onClick={() => navigate("/browse")}
+              className="hover:text-gray-300 transition font-medium"
+            >
+              Home
+            </button>
+            <button
+              onClick={() => navigate("/tv-shows")}
+              className="hover:text-gray-300 transition"
+            >
+              TV Shows
+            </button>
+            <button
+              onClick={() => navigate("/movies")}
+              className="hover:text-gray-300 transition"
+            >
+              Movies
+            </button>
+            <button
+              onClick={() => navigate("/new-and-popular")}
+              className="hover:text-gray-300 transition"
+            >
+              New & Popular
+            </button>
+            <button
+              onClick={() => navigate("/my-list")}
+              className="hover:text-gray-300 transition"
+            >
+              My List
+            </button>
+            <button
+              onClick={() => navigate("/browse-by-languages")}
+              className="hover:text-gray-300 transition"
+            >
+              Browse by Languages
+            </button>
+          </nav>
+        )}
+      </div>
+
       {!user && !isSignIn && (
         <button
           onClick={toggleSignIn}
-          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 font-semibold rounded"
+          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 font-semibold rounded transition"
         >
           Sign In
         </button>
       )}
 
       {user && (
-        <>
-          <div>
-            {/* Nav Links */}
-            <nav className="hidden md:flex space-x-6 text-sm text-white font-medium">
-              <button
-                onClick={() => navigate("/browse")}
-                className="hover:text-gray-300"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => navigate("/tv-shows")}
-                className="hover:text-gray-300"
-              >
-                TV Shows
-              </button>
-              <button
-                onClick={() => navigate("/movies")}
-                className="hover:text-gray-300"
-              >
-                Movies
-              </button>
-              <button
-                onClick={() => navigate("/new-and-popular")}
-                className="hover:text-gray-300"
-              >
-                New & Popular
-              </button>
-              <button
-                onClick={() => navigate("/my-list")}
-                className="hover:text-gray-300"
-              >
-                My List
-              </button>
-              <button
-                onClick={() => navigate("/browse-by-languages")}
-                className="hover:text-gray-300"
-              >
-                Browse by Languages
-              </button>
-            </nav>
-          </div>
-
-          {/* Right: Icons */}
-          <div className="flex items-center space-x-4 text-white">
-            {/* Search */}
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setSearchOpen(!searchOpen)}
-                className="p-2 rounded-full hover:bg-gray-700/50 transition"
-              >
-                <Search className="w-5 h-5" />
-              </button>
-              {searchOpen && (
-                <form onSubmit={handleSearch}>
-                  <input
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Titles, people, genres"
-                    autoFocus
-                    className="bg-black/70 text-white px-3 py-1 rounded focus:outline-none border border-gray-500"
-                  />
-                </form>
-              )}
-            </div>
-
-            {/* Children */}
-            <span className="text-sm cursor-pointer hover:text-gray-300">
-              Children
-            </span>
-
-            {/* Notifications */}
-            <button className="relative p-2 hover:bg-gray-700/50 rounded-full transition">
-              <Bell className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 bg-red-600 text-xs rounded-full px-1">
-                13
-              </span>
+        <div className="flex items-center gap-4 md:gap-6 text-white">
+          {/* Search */}
+          <div className="flex items-center">
+            <button
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="p-2 hover:bg-white/10 rounded-full transition"
+            >
+              <Search className="w-5 h-5" />
             </button>
-
-            {/* Profile Menu with Dropdown */}
-            <ProfileMenu />
+            {searchOpen && (
+              <form onSubmit={handleSearch} className="ml-2">
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Titles, people, genres"
+                  autoFocus
+                  className="bg-black/80 border border-white/50 text-white px-4 py-1.5 rounded focus:outline-none focus:border-white w-48 md:w-64"
+                />
+              </form>
+            )}
           </div>
-        </>
+
+          {/* Notifications */}
+          <button className="relative p-2 hover:bg-white/10 rounded-full transition">
+            <Bell className="w-5 h-5" />
+            <span className="absolute top-1 right-1 w-2 h-2 bg-red-600 rounded-full"></span>
+          </button>
+
+          {/* Profile */}
+          <ProfileMenu />
+        </div>
       )}
     </div>
   );

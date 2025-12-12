@@ -29,19 +29,24 @@ const MovieCard = ({ posterPath, title, movieData }) => {
 
   const fetchTrailer = async () => {
     try {
+      console.log(`Fetching trailer for movie: ${title} (ID: ${movieData.id})`);
       const response = await fetch(
         `https://api.themoviedb.org/3/movie/${movieData.id}/videos?language=en-US`,
         TMDB_API_OPTIONS
       );
       const data = await response.json();
+      console.log(`Trailer response for ${title}:`, data);
       const trailer = data.results?.find(
         (video) => video.type === "Trailer" && video.site === "YouTube"
       );
       if (trailer) {
+        console.log(`Found trailer for ${title}:`, trailer.key);
         setTrailerKey(trailer.key);
+      } else {
+        console.log(`No trailer found for ${title}`);
       }
     } catch (error) {
-      console.error("Error fetching trailer:", error);
+      console.error(`Error fetching trailer for ${title}:`, error);
     }
   };
 

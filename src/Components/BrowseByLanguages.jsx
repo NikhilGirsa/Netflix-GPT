@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header";
 import MovieList from "./MovieList";
 import TVList from "./TVList";
@@ -51,11 +51,14 @@ const BrowseByLanguages = () => {
     fetchContentByLanguage(langCode);
   };
 
+  // Auto-fetch English content on mount
+  useEffect(() => {
+    fetchContentByLanguage("en");
+  }, []);
+
   return (
-    <div className="bg-black min-h-screen">
-      <div className="fixed top-0 left-0 w-full z-50">
-        <Header />
-      </div>
+    <div className="bg-black min-h-screen overflow-x-hidden">
+      <Header />
       <div className="pt-20 md:pt-24 pb-20">
         <div className="px-4 md:px-12 lg:px-16 mb-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8">

@@ -40,14 +40,12 @@ const NewAndPopular = () => {
   }, []);
 
   return (
-    <div className="bg-black min-h-screen">
-      <div className="fixed top-0 left-0 w-full z-50">
-        <Header />
-      </div>
+    <div className="bg-black min-h-screen overflow-x-hidden">
+      <Header />
       {/* Hero Section with Trending Content */}
       <TrendingHero trendingMovies={trendingMovies} />
       <div className="bg-black pb-20">
-        <div className="-mt-32 md:-mt-40 lg:-mt-52 relative z-20 space-y-8 md:space-y-12">
+        <div className="-mt-20 md:-mt-32 lg:-mt-40 relative z-20 space-y-6 md:space-y-10 lg:space-y-12">
           <MovieList
             title="Trending Movies This Week"
             movies={trendingMovies}

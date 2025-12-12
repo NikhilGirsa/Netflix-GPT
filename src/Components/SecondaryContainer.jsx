@@ -5,12 +5,14 @@ const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movies);
 
   return (
-    <div className="bg-black pb-20">
-      <div className="-mt-32 md:-mt-40 lg:-mt-52 relative z-20 space-y-8 md:space-y-12">
-        <MovieList title="Now Playing" movies={movies.nowPlayingMovies} />
-        <MovieList title="Popular" movies={movies.popularMovies} />
-        <MovieList title="Top Rated" movies={movies.topRatedMovies} />
-        <MovieList title="Upcoming" movies={movies.upcomingMovies} />
+    <div className="bg-black">
+      <div className="-mt-20 md:-mt-32 lg:-mt-40 relative z-20 pb-12 md:pb-20">
+        <div className="space-y-6 md:space-y-10 lg:space-y-12">
+          <MovieList title="Now Playing" movies={movies.nowPlayingMovies} />
+          <MovieList title="Trending Now" movies={movies.popularMovies} />
+          <MovieList title="Top Rated" movies={movies.topRatedMovies} />
+          <MovieList title="Upcoming" movies={movies.upcomingMovies} />
+        </div>
       </div>
     </div>
   );

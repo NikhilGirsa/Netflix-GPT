@@ -31,14 +31,14 @@ const TVShows = () => {
   const animatedShows = useTVShowsByGenre(TV_GENRES.ANIMATION);
 
   return (
-    <div className="bg-black min-h-screen">
-      <div className="fixed top-0 left-0 w-full z-50">
-        <Header />
-      </div>
+    <div className="bg-black min-h-screen overflow-x-hidden">
+      <Header />
       {/* Hero Section with Featured TV Show */}
       <TVHero />
       <div className="bg-black pb-20">
-        <div className="-mt-32 md:-mt-40 lg:-mt-52 relative z-20 space-y-8 md:space-y-12">
+        <div className={`relative z-20 space-y-6 md:space-y-10 lg:space-y-12 ${
+          tvShows.popularShows ? '-mt-20 md:-mt-32 lg:-mt-40' : 'pt-20'
+        }`}>
           <TVList title="Airing Today" shows={tvShows.airingTodayShows} />
           <TVList title="Action & Adventure Shows" shows={actionShows} />
           <TVList title="Comedy Shows" shows={comedyShows} />

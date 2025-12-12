@@ -25,11 +25,8 @@ const Browse = () => {
   useMovieTrailer(mainMovieId);
 
   return (
-    <div className="bg-black min-h-screen">
-      <div className="fixed top-0 left-0 w-full z-50">
-        <Header />
-      </div>
-      {/* HOME PAGE - Video Banner */}
+    <div className="bg-black min-h-screen overflow-x-hidden">
+      <Header />
       <MainContainer />
       <SecondaryContainer />
       <PreviewModal />
