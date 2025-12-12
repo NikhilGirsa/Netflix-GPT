@@ -15,7 +15,11 @@ const TVHero = () => {
     if (featuredShow?.id && !trailerVideo) {
       const getShowVideos = async () => {
         try {
-          console.log("Fetching trailer for TV show:", featuredShow.name, featuredShow.id);
+          console.log(
+            "Fetching trailer for TV show:",
+            featuredShow.name,
+            featuredShow.id
+          );
           const response = await fetch(
             `https://api.themoviedb.org/3/tv/${featuredShow.id}/videos?language=en-US`,
             TMDB_API_OPTIONS
@@ -25,7 +29,9 @@ const TVHero = () => {
           const filterData = json.results?.filter(
             (video) => video.type === "Trailer" && video.site === "YouTube"
           );
-          const trailer = filterData?.length ? filterData[0] : json.results?.[0];
+          const trailer = filterData?.length
+            ? filterData[0]
+            : json.results?.[0];
           if (trailer) {
             console.log("Found trailer:", trailer);
             dispatch(addTVTrailerVideo(trailer));
