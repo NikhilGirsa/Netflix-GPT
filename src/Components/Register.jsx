@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import { auth } from "../Utils/Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { NETFLIX_BGIMAGE } from "../Utils/Constants";
 
 const Register = () => {
   const location = useLocation();
@@ -33,26 +34,38 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen text-black">
-      {/* White background header */}
+    <div className="relative w-full min-h-screen text-white">
+      {/* Background image */}
+      <img
+        src={NETFLIX_BGIMAGE}
+        className="absolute w-full h-full object-cover -z-20"
+        alt="background"
+      />
+
+      {/* Black overlay */}
+      <div className="absolute w-full h-full bg-black/60 -z-10" />
+
+      {/* Header */}
       <Header />
 
-      <div className="flex justify-center items-center mt-60 px-4">
-        <div className="bg-gray-100 p-8 rounded-md shadow-lg w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-6">Create your account</h2>
+      <div className="flex justify-center items-center min-h-screen px-4 pt-20">
+        <div className="bg-black/75 p-8 rounded-md shadow-lg w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-6 text-white">
+            Create your account
+          </h2>
           <form onSubmit={handleRegister} className="flex flex-col gap-4">
             <input
               ref={emailRef}
               type="email"
               defaultValue={prefilledEmail}
-              className="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="p-3 rounded bg-zinc-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
               placeholder="Email address"
               required
             />
             <input
               ref={passwordRef}
               type="password"
-              className="p-3 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="p-3 rounded bg-zinc-800 border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
               placeholder="Password"
               required
             />

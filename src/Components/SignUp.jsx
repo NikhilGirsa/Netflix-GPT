@@ -6,10 +6,18 @@ const SignUp = () => {
   const emailRef = useRef(null);
   const navigate = useNavigate();
 
-  const handleGetStarted = () => {
-    const email = emailRef.current.value;
+  const handleGetStarted = (e) => {
+    e.preventDefault(); // Prevent form refresh
+    e.stopPropagation(); // Stop event from bubbling up
+
+    const email = emailRef.current?.value?.trim();
+    console.log("Email entered:", email); // Debug log
+
     if (email) {
+      console.log("Navigating to register with email:", email); // Debug log
       navigate("/register", { state: { email } }); // 👈 pass email to Register page
+    } else {
+      console.log("No email entered"); // Debug log
     }
   };
 
@@ -31,7 +39,10 @@ const SignUp = () => {
         Ready to watch? Enter your email to create or restart your membership.
       </p>
 
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-3 relative">
+      <form
+        onSubmit={handleGetStarted}
+        className="flex flex-col sm:flex-row justify-center items-center gap-3 relative"
+      >
         <div className="relative w-1/2">
           <label
             className={`absolute left-3 transition-all duration-200 pointer-events-none ${
@@ -51,12 +62,12 @@ const SignUp = () => {
           />
         </div>
         <button
-          onClick={handleGetStarted}
+          type="submit"
           className="bg-red-600 hover:bg-red-700 transition-colors px-6 py-3 text-lg font-medium rounded-sm cursor-pointer"
         >
           Get Started &gt;
         </button>
-      </div>
+      </form>
     </div>
   );
 };

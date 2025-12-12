@@ -21,13 +21,19 @@ const Header = ({ isSignIn, toggleSignIn }) => {
       if (user) {
         const { uid, email, displayName } = user;
         dispatch(setUserInfo({ uid, email, displayName }));
-        // Only navigate to browse if we're on the login page
-        if (window.location.pathname === "/") {
+        // Navigate to browse if we're on the login or register page
+        if (
+          window.location.pathname === "/" ||
+          window.location.pathname === "/register"
+        ) {
           navigate("/browse");
         }
       } else {
         dispatch(removeUserInfo());
-        navigate("/");
+        // Don't navigate away if user is on the register page
+        if (window.location.pathname !== "/register") {
+          navigate("/");
+        }
       }
     });
 
