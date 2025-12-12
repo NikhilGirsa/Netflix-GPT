@@ -8,6 +8,7 @@ import NewAndPopular from "./NewAndPopular";
 import MyList from "./MyList";
 import BrowseByLanguages from "./BrowseByLanguages";
 import SearchResults from "./SearchResults";
+import AIChat from "./AIChat";
 
 const appRouter = createBrowserRouter([
   { path: "/", element: <Login /> },
@@ -19,6 +20,7 @@ const appRouter = createBrowserRouter([
   { path: "/my-list", element: <MyList /> },
   { path: "/browse-by-languages", element: <BrowseByLanguages /> },
   { path: "/search", element: <SearchResults /> },
+  { path: "/ai-chat", element: <AIChat /> },
 ]);
 
 const Body = () => {

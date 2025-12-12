@@ -91,6 +91,12 @@ const Header = ({ isSignIn, toggleSignIn }) => {
             >
               Browse by Languages
             </button>
+            <button
+              onClick={() => navigate("/ai-chat")}
+              className="hover:text-gray-300 transition flex items-center gap-1"
+            >
+              AI Chat
+            </button>
           </nav>
         )}
       </div>
