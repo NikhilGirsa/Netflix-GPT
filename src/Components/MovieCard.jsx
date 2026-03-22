@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Tilt from "react-parallax-tilt";
 import { useDispatch } from "react-redux";
 import { TMDB_IMG_CDN, TMDB_API_OPTIONS } from "../Utils/tmdbConfig";
 import { openModal } from "../Utils/modalSlice";
@@ -19,13 +20,14 @@ const MovieCard = ({ posterPath, title, movieData }) => {
   const hoverTimeoutRef = useRef(null);
   const playerRef = useRef(null);
 
-  if (!posterPath) return null;
-
   useEffect(() => {
     if (isHovered && movieData?.id && !trailerKey) {
       fetchTrailer();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isHovered, movieData?.id]);
+
+  if (!posterPath) return null;
 
   const fetchTrailer = async () => {
     try {
@@ -79,7 +81,14 @@ const MovieCard = ({ posterPath, title, movieData }) => {
         marginRight: isHovered ? "6rem" : "0",
       }}
     >
-      <div className="relative rounded-md overflow-hidden shadow-xl bg-zinc-900">
+      <Tilt
+        tiltMaxAngleX={15}
+        tiltMaxAngleY={15}
+        transitionSpeed={2000}
+        scale={1.02}
+        gyroscope={true}
+        className="relative rounded-md overflow-hidden shadow-2xl bg-zinc-900 border border-white/10 hover-glow"
+      >
         {!isHovered || !trailerKey ? (
           <img
             src={TMDB_IMG_CDN + posterPath}
@@ -143,7 +152,7 @@ const MovieCard = ({ posterPath, title, movieData }) => {
             </h3>
           </div>
         )}
-      </div>
+      </Tilt>
     </div>
   );
 };

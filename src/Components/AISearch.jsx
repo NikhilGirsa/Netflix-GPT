@@ -35,7 +35,7 @@ const AISearch = () => {
     isLoading,
     error,
   } = aiSearchState;
-
+  // eslint-disable-next-line no-unused-vars
   const t = (key) => getTranslation(currentLanguage, key);
 
   const searchMovieInTMDB = async (movieTitle) => {

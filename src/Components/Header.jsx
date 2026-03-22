@@ -8,6 +8,8 @@ import { auth } from "../Utils/Firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUserInfo, setUserInfo } from "../Utils/userSlice";
 import { setSearchQuery } from "../Utils/searchSlice";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Header = ({ isSignIn, toggleSignIn }) => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -51,7 +53,12 @@ const Header = ({ isSignIn, toggleSignIn }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-gradient-to-b from-black via-black/80 to-transparent flex justify-between items-center px-4 md:px-12 lg:px-16 py-4 md:py-6 z-50 transition-all duration-300">
+    <motion.div 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="fixed top-0 left-0 w-full glass-header flex justify-between items-center px-4 md:px-12 lg:px-16 py-4 md:py-6 z-50 transition-all duration-300"
+    >
       <div className="flex items-center gap-6 md:gap-10">
         <img
           src={NETFLIX_IMG}
@@ -150,7 +157,7 @@ const Header = ({ isSignIn, toggleSignIn }) => {
           <ProfileMenu />
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

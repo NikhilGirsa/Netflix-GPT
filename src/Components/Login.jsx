@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Header from "./Header";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import { NETFLIX_BGIMAGE } from "../Utils/Constants";
+import Background3D from "./Background3D";
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(false);
@@ -12,25 +14,22 @@ const Login = () => {
   };
 
   return (
-    <div className="relative w-full h-screen text-white">
-      {/* Background image */}
-      <img
-        src={NETFLIX_BGIMAGE}
-        className="absolute w-full h-full object-cover -z-20"
-        alt="background"
-      />
-
-      {/* Black overlay */}
-      <div className="absolute w-full h-full bg-black/60 -z-10" />
+    <div className="relative w-full h-screen text-white overflow-hidden">
+      <Background3D />
 
       {/* Header */}
       <Header isSignIn={isSignIn} toggleSignIn={toggleSignIn} />
 
       {/* Centered form */}
-      <div className="flex justify-center items-center h-full px-4">
-        <div className="bg-gray/75 p-8 rounded-md w-full max-w-2/3">
+      <div className="flex justify-center items-center h-full px-4 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="glass-panel p-8 rounded-2xl w-full max-w-md shadow-2xl border border-white/20"
+        >
           {isSignIn ? <SignIn toggleSignIn={toggleSignIn} /> : <SignUp />}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
