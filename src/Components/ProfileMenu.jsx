@@ -41,7 +41,7 @@ const ProfileMenu = () => {
       {/* Profile + Caret */}
       <div className="flex items-center cursor-pointer space-x-1">
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
+          src="/avatar.svg"
           alt="Profile"
           className="w-8 h-8 rounded"
         />
